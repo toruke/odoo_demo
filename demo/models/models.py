@@ -16,7 +16,7 @@ class User(models.Model):
     @api.constrains('description')
     def _description_is_one_line(self):
         for user in self:
-            if user.description and not re.match(r'^[\w \'_]+$', user.description):
+            if user.description and '\n' in user.description :
                 raise ValueError(f'Description must be oneline, got `{user.description}`')
 
 class Hobby(models.Model):
